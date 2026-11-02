@@ -3,32 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0f172a">
-<title>CASA CLUB — La casa è una squadra</title>
+<meta name="theme-color" content="#2d6a4f">
+<title>OASIS HOME — Spazi curati, mente leggera</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f8fafc;
+  --bg: #f4f7f5;
   --paper: #ffffff;
-  --ink: #0f172a;
-  --muted: #64748b;
-  --line: #e2e8f0;
-  --primary: #10b981;
-  --primary-light: #ecfdf5;
-  --primary-dark: #047857;
-  --accent: #6366f1;
-  --accent-light: #eef2ff;
-  --gold: #f59e0b;
-  --gold-light: #fef3c7;
-  --red: #ef4444;
-  --red-light: #fef2f2;
+  --ink: #1b3026;
+  --muted: #6b7c73;
+  --line: #dfe7e2;
+  --primary: #2d6a4f;
+  --primary-light: #e8f1ec;
+  --primary-dark: #1b4332;
+  --accent: #52796f;
+  --accent-light: #f0f4f2;
+  --gold: #dda15e;
+  --gold-light: #fefae0;
+  --red: #bc4749;
+  --red-light: #fdf2f2;
   --radius: 20px;
   --radius-sm: 12px;
-  --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.03);
-  --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
-  --shadow-lg: 0 20px 30px -10px rgba(15, 23, 42, 0.12);
+  --shadow-sm: 0 2px 8px rgba(45, 106, 79, 0.04);
+  --shadow: 0 8px 24px rgba(45, 106, 79, 0.06);
+  --shadow-lg: 0 16px 32px rgba(45, 106, 79, 0.1);
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -43,13 +43,13 @@ body {
 }
 
 button, input, select { font: inherit; }
-button { cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); border: none; }
-button:active { transform: scale(0.97); }
+button { cursor: pointer; transition: all 0.2s ease; border: none; }
+button:active { transform: scale(0.98); }
 
 main {
   max-width: 680px;
   margin: auto;
-  padding: 20px 20px calc(110px + env(safe-area-inset-bottom));
+  padding: 24px 20px calc(110px + env(safe-area-inset-bottom));
 }
 
 /* Header & Brand */
@@ -64,17 +64,18 @@ header {
 .mark {
   width: 48px;
   height: 48px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 14px;
+  background: var(--primary);
   color: #fff;
   display: grid;
   place-items: center;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 22px;
-  box-shadow: 0 8px 16px -4px rgba(16, 185, 129, 0.4);
+  font-family: 'Playfair Display', serif;
+  box-shadow: 0 6px 16px rgba(45, 106, 79, 0.2);
 }
-.brand strong { display: block; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: var(--ink); }
-.brand small { color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: 0.05em; }
+.brand strong { display: block; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 21px; letter-spacing: -0.01em; color: var(--ink); }
+.brand small { color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
 
 .btn-icon {
   width: 42px;
@@ -92,21 +93,21 @@ header {
 /* Typography & Layout */
 .eyebrow {
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
   font-weight: 700;
   margin: 0 0 6px;
 }
-h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin: 4px 0 6px; color: var(--ink); }
-h2 { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; margin: 28px 0 14px; }
+h1 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 4px 0 6px; color: var(--ink); }
+h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin: 28px 0 14px; color: var(--ink); }
 h3 { font-size: 15px; font-weight: 700; margin: 0 0 8px; }
 .sub { color: var(--muted); font-size: 13.5px; font-weight: 500; }
 
 /* Cards & Elements */
 .card {
   background: var(--paper);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
   margin: 14px 0;
@@ -114,11 +115,11 @@ h3 { font-size: 15px; font-weight: 700; margin: 0 0 8px; }
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .card-featured {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
   color: #fff;
   border: none;
 }
-.card-featured .eyebrow, .card-featured .sub { color: #94a3b8; }
+.card-featured .eyebrow, .card-featured .sub { color: #b7c4bc; }
 
 .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .wrap { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
@@ -127,7 +128,7 @@ h3 { font-size: 15px; font-weight: 700; margin: 0 0 8px; }
 .profiles { display: flex; gap: 10px; overflow-x: auto; padding: 4px 0 16px; scrollbar-width: none; }
 .profiles::-webkit-scrollbar { display: none; }
 .profile {
-  border: 1.5px solid var(--line);
+  border: 1px solid var(--line);
   background: var(--paper);
   border-radius: 99px;
   padding: 8px 16px;
@@ -141,10 +142,10 @@ h3 { font-size: 15px; font-weight: 700; margin: 0 0 8px; }
   box-shadow: var(--shadow-sm);
 }
 .profile.active {
-  background: var(--ink);
+  background: var(--primary);
   color: #fff;
-  border-color: var(--ink);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
 }
 
 /* Navigation Bar */
@@ -156,23 +157,23 @@ nav {
   transform: translateX(-50%);
   width: calc(100% - 32px);
   max-width: 520px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--line);
   border-radius: 24px;
   padding: 6px;
   display: flex;
   justify-content: space-between;
   gap: 4px;
-  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-lg);
 }
 nav button {
   flex: 1;
   border: 0;
   background: transparent;
   color: var(--muted);
-  border-radius: 18px;
+  border-radius: 16px;
   padding: 8px 2px;
   font-size: 11px;
   font-weight: 600;
@@ -183,14 +184,15 @@ nav button {
 }
 nav button span { font-size: 18px; }
 nav button.active {
-  background: var(--ink);
-  color: #fff;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 700;
 }
 
 /* Buttons */
 .btn {
   border: 0;
-  background: var(--ink);
+  background: var(--primary);
   color: #fff;
   border-radius: var(--radius-sm);
   padding: 12px 18px;
@@ -200,18 +202,19 @@ nav button.active {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.15);
 }
-.btn.secondary { background: var(--accent-light); color: var(--accent); }
-.btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
-.btn.danger { background: var(--red-light); color: var(--red); }
-.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn.secondary { background: var(--primary-light); color: var(--primary); box-shadow: none; }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
+.btn.danger { background: var(--red-light); color: var(--red); box-shadow: none; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
 
-.big { font-size: 40px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+.big { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; line-height: 1; }
 .pill {
   display: inline-flex;
   align-items: center;
   background: var(--primary-light);
-  color: var(--primary-dark);
+  color: var(--primary);
   border-radius: 99px;
   padding: 5px 12px;
   font-size: 12px;
@@ -220,16 +223,16 @@ nav button.active {
 }
 
 .progress {
-  height: 10px;
+  height: 8px;
   border-radius: 99px;
-  background: #e2e8f0;
+  background: var(--line);
   overflow: hidden;
   margin: 12px 0;
 }
 .progress > i {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, #10b981, #34d399);
+  background: var(--primary);
   border-radius: 99px;
   transition: width 0.4s ease;
 }
@@ -251,15 +254,15 @@ nav button.active {
   box-shadow: var(--shadow-sm);
 }
 .task:hover { border-color: var(--primary); }
-.task b { font-weight: 700; font-size: 15px; }
+.task b { font-weight: 600; font-size: 15px; }
 .task small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
-.task .pts { color: var(--primary); font-weight: 800; font-size: 14px; white-space: nowrap; }
+.task .pts { color: var(--primary); font-weight: 700; font-size: 14px; white-space: nowrap; }
 
 /* Inputs */
 input, select {
   width: 100%;
   padding: 12px 14px;
-  border: 1.5px solid var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: var(--paper);
   color: var(--ink);
@@ -275,24 +278,24 @@ label { display: block; color: var(--muted); font-size: 12px; font-weight: 700; 
 
 .notice {
   background: var(--gold-light);
-  border: 1px solid #fde68a;
+  border: 1px solid #faedcd;
   border-radius: var(--radius-sm);
   padding: 14px 16px;
-  color: #92400e;
+  color: #856404;
   font-size: 13px;
   font-weight: 500;
   margin: 14px 0;
 }
 
 .empty { padding: 32px 16px; text-align: center; color: var(--muted); font-weight: 500; }
-.rank { font-weight: 800; font-size: 22px; color: var(--gold); width: 28px; text-align: center; }
-.avatar { width: 44px; height: 44px; border-radius: 14px; background: var(--accent-light); color: var(--accent); display: grid; place-items: center; font-weight: 800; font-size: 18px; }
+.rank { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 20px; color: var(--gold); width: 28px; text-align: center; }
+.avatar { width: 44px; height: 44px; border-radius: 14px; background: var(--primary-light); color: var(--primary); display: grid; place-items: center; font-weight: 700; font-size: 18px; }
 
 /* Modal & Toast */
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(27, 48, 38, 0.5);
   backdrop-filter: blur(4px);
   z-index: 20;
   display: none;
@@ -304,7 +307,7 @@ label { display: block; color: var(--muted); font-size: 12px; font-weight: 700; 
 .sheet {
   width: min(100%, 540px);
   background: var(--paper);
-  border-radius: 28px;
+  border-radius: 28px 28px 20px 20px;
   padding: 24px;
   max-height: 85dvh;
   overflow-y: auto;
@@ -346,8 +349,8 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 16px 0; }
 <main>
 <header>
   <div class="brand">
-    <div class="mark">C</div>
-    <div><strong>CASA CLUB</strong><small>OGNI GESTO CONTA</small></div>
+    <div class="mark">O</div>
+    <div><strong>OASIS HOME</strong><small>Spazi curati, mente leggera</small></div>
   </div>
   <button class="btn-icon" id="settingsShortcut" aria-label="Impostazioni">⚙</button>
 </header>
@@ -359,13 +362,13 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 16px 0; }
 <div class="toast" id="toast"></div>
 
 <script>
-const KEY='casa_club_local_v1', OLD='faccende_v1';
+const KEY='oasis_home_local_v1', OLD='casa_club_local_v1';
 const uid=()=>Math.random().toString(36).slice(2,8)+Date.now().toString(36);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const monday=t=>{let d=new Date(t);d.setHours(0,0,0,0);d.setDate(d.getDate()-(d.getDay()+6)%7);return +d};
 const fmt=t=>new Date(t).toLocaleDateString('it-IT',{day:'numeric',month:'short',year:'numeric'});
 
-/* Elenco completo faccende Adulti aggiornato dalle immagini */
+/* Elenco completo faccende Adulti aggiornato */
 const ADULT=[
 ['1. Cucina',[
   ['Caricare lavastoviglie',5],
@@ -465,7 +468,7 @@ const ADULT=[
 ]]
 ];
 
-/* Elenco completo faccende Figli aggiornato dalle immagini */
+/* Elenco completo faccende Figli aggiornato */
 const CHILD=[
 ['1. Camera personale',[
   ['Riordinare giochi',2],
@@ -546,7 +549,7 @@ const CHILD_REWARDS=[['30 minuti di gioco extra',30],['Scegliere il film',40],['
 
 function defaults(){return {version:2,people:[{id:'p1',name:'Adulto 1',type:'adult',age:35},{id:'p2',name:'Adulto 2',type:'adult',age:35},{id:'c1',name:'Figlio 1',type:'child',age:8}],current:'p1',tasks:[...ADULT.flatMap(([g,a])=>a.map(([name,points])=>({id:uid(),group:g,name,points,for:'adult'}))),...CHILD.flatMap(([g,a])=>a.map(([name,points])=>({id:uid(),group:g,name,points,for:'child'})))],pending:[],approved:[],rejected:[],redeems:[],rewards:[...ADULT_REWARDS.map(([name,cost])=>({id:uid(),name,cost,for:'adult'})),...CHILD_REWARDS.map(([name,cost])=>({id:uid(),name,cost,for:'child'}))],team:{goal:250,week:monday(Date.now()),prize:'Serata in famiglia scelta da tutti'},weeks:[],settings:{weeklyBonus:20,maxRedeems:2,childTargets:{small:25,medium:40,teen:55},theme:'light'},events:[],settledWeeks:[]};}
 function migrateOld(o){const d=defaults();if(!o)return d;try{d.people=(o.players||d.people).map((p,i)=>({id:p.id||uid(),name:p.name||`Partecipante ${i+1}`,type:'adult',age:30}));d.current=o.cur||d.people[0].id;d.tasks=(o.tasks||[]).map(t=>({id:t.id||uid(),group:t.g||'Altro',name:t.name,points:t.points,for:'adult'})).concat(d.tasks.filter(t=>t.for==='child'));d.approved=(o.logs||[]).map(l=>({id:l.id||uid(),taskId:l.taskId,name:l.name,points:l.points,by:l.by,at:l.ts||Date.now(),week:monday(l.ts||Date.now()),approvedBy:l.by,legacy:true}));d.redeems=(o.redeems||[]).map(r=>({...r,for:'adult'}));d.rewards=(o.rewards||[]).map(r=>({...r,for:'adult'})).concat(d.rewards.filter(r=>r.for==='child'));d.events.push({id:uid(),text:'Dati precedenti importati',at:Date.now()});}catch(e){}return d;}
-function load(){try{let s=localStorage.getItem(KEY);if(s)return JSON.parse(s);let old=localStorage.getItem(OLD);if(old)return migrateOld(JSON.parse(old));}catch(e){}return defaults();}
+function load(){try{let s=localStorage.getItem(KEY);if(s)return JSON.parse(s);let old=localStorage.getItem(OLD);if(old)return migrateOld(JSON.parse(old));let oldDef=localStorage.getItem('casa_club_local_v1');if(oldDef)return JSON.parse(oldDef);}catch(e){}return defaults();}
 let S=load(),tab='home',filter='adult',rankView='week',editTasks=false,editRewards=false;
 function save(){localStorage.setItem(KEY,JSON.stringify(S))}
 function person(id){return S.people.find(p=>p.id===id)||{name:'Persona',type:'adult'}}
@@ -562,31 +565,31 @@ function openModal(content){document.querySelector('#sheet').innerHTML=content;d
 function closeModal(){document.querySelector('#modal').classList.remove('open')}
 document.querySelector('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
 
-const navItems=[['home','⌂','Casa'],['tasks','✓','Faccende'],['approvals','◷','Conferme'],['rank','♛','Classifica'],['rewards','☆','Premi'],['history','≡','Storico']];
+const navItems=[['home','⌂','Oasis'],['tasks','✓','Faccende'],['approvals','◷','Conferme'],['rank','♛','Classifica'],['rewards','☆','Premi'],['history','≡','Storico']];
 function renderNav(){document.querySelector('#nav').innerHTML=navItems.map(([id,ic,label])=>`<button data-tab="${id}" class="${tab===id?'active':''}"><span>${ic}</span>${label}</button>`).join('');document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;render()})}
-function profileBar(){return `<div class="profiles">${S.people.map(p=>`<button class="profile ${p.id===S.current?'active':''}" data-profile="${p.id}">${p.type==='child'?'🧒':'👤'} ${esc(p.name)}</button>`).join('')}<button class="profile" id="addPerson">＋ Aggiungi</button></div>`}
+function profileBar(){return `<div class="profiles">${S.people.map(p=>`<button class="profile ${p.id===S.current?'active':''}" data-profile="${p.id}">${p.type==='child'?'🧒':'🍃'} ${esc(p.name)}</button>`).join('')}<button class="profile" id="addPerson">＋ Aggiungi</button></div>`}
 function header(title,desc){return `<p class="eyebrow">${new Date().toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'})}</p><h1>${title}</h1><p class="sub">${desc}</p>`}
 
 function render(){
   settleWeeks();renderNav();let p=current(),t=totals(p.id),html=profileBar();
   if(tab==='home'){
    let tp=teamPoints(),goal=S.team.goal,pct=Math.min(100,Math.round(tp/Math.max(1,goal)*100));
-   html+=header('La casa è una squadra.','Piccoli gesti quotidiani, grandi risultati insieme.');
-   html+=`<div class="card card-featured"><div class="row"><div><div class="eyebrow">Saldo Punti · ${esc(p.name)}</div><div class="big">${t.balance}</div><div class="sub">${t.earned} guadagnati · ${t.spent} spesi</div></div><div class="avatar" style="background:rgba(255,255,255,0.1);color:#fff">${p.type==='child'?'★':'✦'}</div></div></div>`;
-   html+=`<div class="card"><div class="row"><div><div class="eyebrow">Obiettivo di squadra</div><h2 style="margin:0">${tp} / ${goal} pt</h2></div><span class="pill">${pct}%</span></div><div class="progress"><i style="width:${pct}%"></i></div><div class="sub">${pct>=100?'Obiettivo raggiunto! Premio famiglia sbloccato 🎉':`Mancano ${Math.max(0,goal-tp)} punti al premio comune.`}</div><div class="sub" style="margin-top:6px;font-weight:600;color:var(--ink)">Premio: ${esc(S.team.prize)}</div></div>`;
+   html+=header('Spazi curati, mente leggera.','Piccoli gesti quotidiani, armonia in famiglia.');
+   html+=`<div class="card card-featured"><div class="row"><div><div class="eyebrow">Saldo Punti · ${esc(p.name)}</div><div class="big">${t.balance}</div><div class="sub">${t.earned} guadagnati · ${t.spent} spesi</div></div><div class="avatar" style="background:rgba(255,255,255,0.15);color:#fff">${p.type==='child'?'★':'🌿'}</div></div></div>`;
+   html+=`<div class="card"><div class="row"><div><div class="eyebrow">Obiettivo di squadra</div><h2 style="margin:0">${tp} / ${goal} pt</h2></div><span class="pill">${pct}%</span></div><div class="progress"><i style="width:${pct}%"></i></div><div class="sub">${pct>=100?'Obiettivo raggiunto! Armonia e premio sbloccati 🌿':`Mancano ${Math.max(0,goal-tp)} punti al traguardo comune.`}</div><div class="sub" style="margin-top:6px;font-weight:600;color:var(--ink)">Premio: ${esc(S.team.prize)}</div></div>`;
    html+=`<div class="grid2"><div class="card"><div class="eyebrow">Attività Settimanali</div><div class="big" style="color:var(--primary);">${t.week}</div><div class="sub">punti accumulati</div></div><div class="card"><div class="eyebrow">In attesa</div><div class="big" style="color:var(--gold);">${S.pending.filter(x=>x.by===p.id).length}</div><div class="sub">da approvare</div></div></div>`;
    html+=`<h2>Azioni Rapide</h2><button class="btn" id="goTasks" style="width:100%;padding:16px;">＋ Segna una faccenda completata</button><h2>In attesa di approvazione</h2>`;
-   let pend=S.pending.filter(x=>x.by===p.id);html+=pend.length?pend.slice(0,3).map(x=>`<div class="card"><div class="row"><div><b>${esc(x.name)}</b><div class="sub">${x.points} punti · in attesa di ${esc(person(x.reviewer).name)}</div></div><span class="pill" style="background:var(--gold-light);color:var(--gold);">In attesa</span></div></div>`).join(''):`<div class="card empty">Nessuna attività in attesa per ${esc(p.name)}.</div>`;
+   let pend=S.pending.filter(x=>x.by===p.id);html+=pend.length?pend.slice(0,3).map(x=>`<div class="card"><div class="row"><div><b>${esc(x.name)}</b><div class="sub">${x.points} punti · in attesa di ${esc(person(x.reviewer).name)}</div></div><span class="pill" style="background:var(--gold-light);color:#856404;">In attesa</span></div></div>`).join(''):`<div class="card empty">Nessuna attività in attesa per ${esc(p.name)}.</div>`;
   }
   if(tab==='tasks'){
-   html+=header('Faccende','Segna ciò che hai completato. Un componente dovrà confermarlo.');
+   html+=header('Faccende','Seleziona ciò che hai completato per la cura della casa.');
    html+=`<div class="wrap"><button class="btn ${filter==='adult'?'':'secondary'}" data-filter="adult">Adulti</button><button class="btn ${filter==='child'?'':'secondary'}" data-filter="child">Figli</button><button class="btn ghost" id="toggleTaskEdit">${editTasks?'Fine modifica':'Modifica elenco'}</button></div>`;
    let groups=[...new Set(S.tasks.filter(x=>x.for===filter).map(x=>x.group))];
    groups.forEach(g=>{html+=`<h2>${esc(g)}</h2>`;S.tasks.filter(x=>x.for===filter&&x.group===g).forEach(x=>{html+=editTasks?`<div class="listrow"><div style="flex:1"><input data-taskname="${x.id}" value="${esc(x.name)}"></div><input style="width:75px" type="number" min="1" data-taskpts="${x.id}" value="${x.points}"><button class="btn danger" data-taskdel="${x.id}">×</button></div>`:`<button class="task" data-task="${x.id}"><span><b>${esc(x.name)}</b><small>${filter==='child'?'Per ragazzi':'Per adulti'}</small></span><span class="pts">+${x.points} pt</span></button>`})});
-   if(editTasks)html+=`<div class="card"><h3>Nuova attività</h3><label>Nome</label><input id="newTaskName" placeholder="Es. Sistemare la dispensa"><div class="fieldrow"><div><label>Categoria</label><input id="newTaskGroup" value="Altro"></div><div><label>Punti</label><input id="newTaskPts" type="number" value="5" min="1"></div></div><button class="btn" id="saveTask" style="margin-top:12px;width:100%">Aggiungi</button></div>`;
+   if(editTasks)html+=`<div class="card"><h3>Nuova attività</h3><label>Nome</label><input id="newTaskName" placeholder="Es. Cura delle piante"><div class="fieldrow"><div><label>Categoria</label><input id="newTaskGroup" value="Altro"></div><div><label>Punti</label><input id="newTaskPts" type="number" value="5" min="1"></div></div><button class="btn" id="saveTask" style="margin-top:12px;width:100%">Aggiungi</button></div>`;
   }
   if(tab==='approvals'){
-   html+=header('Conferme','Ogni attività viene validata da un altro familiare.');
+   html+=header('Conferme','Validazione delle attività svolte dai familiari.');
    let inbox=S.pending.filter(x=>x.reviewer===p.id);
    html+=`<h2>Da verificare (${inbox.length})</h2>`;
    html+=inbox.length?inbox.map(x=>`<div class="card"><div class="row"><div><b>${esc(x.name)}</b><div class="sub">${esc(person(x.by).name)} · ${x.points} punti · ${fmt(x.at)}</div></div><span class="pill">Da confermare</span></div><div class="wrap" style="margin-top:14px"><button class="btn" data-approve="${x.id}">Conferma</button><button class="btn secondary" data-partial="${x.id}">Conferma 50%</button><button class="btn danger" data-reject="${x.id}">Rifiuta</button></div></div>`).join(''):`<div class="card empty">Non ci sono attività da verificare.</div>`;
@@ -594,17 +597,17 @@ function render(){
    html+=`<h2>Ultimi Rifiuti</h2>`+(S.rejected.length?S.rejected.slice(-5).reverse().map(x=>`<div class="card"><b>${esc(x.name)}</b><div class="sub">${esc(person(x.by).name)} · ${esc(x.reason||'Nessuna motivazione')}</div><button class="btn secondary" style="margin-top:10px;" data-resubmit="${x.id}">Correggi e reinvia</button></div>`).join(''):`<div class="sub">Nessun rifiuto recente.</div>`);
   }
   if(tab==='rank'){
-   html+=header('Classifiche','Sfida e premi le buone abitudini quotidiane.');
+   html+=header('Classifiche','Il contributo di ciascuno alla vita di casa.');
    html+=`<div class="wrap"><button class="btn ${filter==='adult'?'':'secondary'}" data-filter="adult">Adulti</button><button class="btn ${filter==='child'?'':'secondary'}" data-filter="child">Figli</button><button class="btn ${rankView==='week'?'':'ghost'}" data-rank="week">Settimana</button><button class="btn ${rankView==='all'?'':'ghost'}" data-rank="all">Totale</button></div>`;
    let rows=filter==='child'?weeklyRank('child'):weeklyRank('adult');if(rankView==='all')rows=rows.map(x=>({...x,score:x.earned})).sort((a,b)=>b.earned-a.earned);
    html+=rows.length?rows.map((x,i)=>{let score=rankView==='all'?x.earned:(filter==='child'?Math.round(x.week/Math.max(1,childTarget(x.p))*100):x.week);return `<div class="card"><div class="row"><div class="wrap"><span class="rank">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</span><div><b>${esc(x.p.name)}</b><div class="sub">${filter==='child'?`${x.week}/${childTarget(x.p)} pt obiettivo`:`${x.week} pt questa settimana`}</div></div></div><span class="pill">${rankView==='all'?x.earned+' pt':filter==='child'?score+'%':score+' pt'}</span></div>${filter==='child'&&rankView==='week'?`<div class="progress"><i style="width:${Math.min(100,score)}%"></i></div>`:''}<div class="sub" style="margin-top:6px;">Totale: ${x.earned} · Disponibili: ${x.balance}</div></div>`}).join(''):`<div class="card empty">Nessun partecipante trovato.</div>`;
    if(filter==='adult'&&rankView==='week'&&rows.length>1)html+=`<div class="notice">Il vincitore settimanale riceve +${S.settings.weeklyBonus} punti bonus.</div>`;
   }
   if(tab==='rewards'){
-   html+=header('Premi','Riscatta i punti guadagnati con il tuo contributo.');
+   html+=header('Premi','Riscatta i tuoi punti per momenti di relax e benessere.');
    html+=`<div class="card card-featured"><div class="eyebrow">Saldo Attuale</div><div class="big">${t.balance} <span style="font-size:18px;">pt</span></div></div><div class="wrap"><button class="btn ${filter==='adult'?'':'secondary'}" data-filter="adult">Premi adulti</button><button class="btn ${filter==='child'?'':'secondary'}" data-filter="child">Premi figli</button><button class="btn ghost" id="toggleRewardEdit">${editRewards?'Fine modifica':'Modifica premi'}</button></div>`;
    S.rewards.filter(r=>r.for===filter).sort((a,b)=>a.cost-b.cost).forEach(r=>{let used=S.redeems.some(x=>x.by===p.id&&x.rewardId===r.id&&x.week===monday(Date.now())),can=p.type===filter&&t.balance>=r.cost&&!used&&S.redeems.filter(x=>x.by===p.id&&x.week===monday(Date.now())).length<S.settings.maxRedeems;
-   html+=editRewards?`<div class="listrow"><input data-rewardname="${r.id}" value="${esc(r.name)}"><input style="width:80px" type="number" data-rewardcost="${r.id}" value="${r.cost}"><button class="btn danger" data-rewarddel="${r.id}">×</button></div>`:`<div class="card row"><div style="flex:1"><b>${esc(r.name)}</b><div class="sub">${r.cost} punti ${used?'· Già riscattato':''}</div></div><button class="btn" data-redeem="${r.id}" ${can?'':'disabled'}>${used?'Riscattato':t.balance<r.cost?'Infallibile':p.type!==filter?'Incompatibile':'Riscatta'}</button></div>`});
+   html+=editRewards?`<div class="listrow"><input data-rewardname="${r.id}" value="${esc(r.name)}"><input style="width:80px" type="number" data-rewardcost="${r.id}" value="${r.cost}"><button class="btn danger" data-rewarddel="${r.id}">×</button></div>`:`<div class="card row"><div style="flex:1"><b>${esc(r.name)}</b><div class="sub">${r.cost} punti ${used?'· Già riscattato':''}</div></div><button class="btn" data-redeem="${r.id}" ${can?'':'disabled'}>${used?'Riscattato':t.balance<r.cost?'Punti insufficienti':p.type!==filter?'Profilo diverso':'Riscatta'}</button></div>`});
    if(editRewards)html+=`<div class="card"><h3>Nuovo premio</h3><input id="newRewardName" placeholder="Nome premio"><div class="fieldrow" style="margin-top:8px;"><input id="newRewardCost" type="number" min="1" value="50"><button class="btn" id="saveReward">Aggiungi</button></div></div>`;
   }
   if(tab==='history'){
@@ -645,7 +648,7 @@ function render(){
   document.querySelectorAll('[data-redeem]').forEach(b=>b.onclick=()=>{let r=S.rewards.find(x=>x.id===b.dataset.redeem),p=current(),t=totals(p.id);if(p.type!==r.for||t.balance<r.cost)return;if(!confirm(`Riscattare "${r.name}"?`))return;S.redeems.push({id:uid(),rewardId:r.id,name:r.name,cost:r.cost,by:p.id,for:r.for,at:Date.now(),week:monday(Date.now())});logEvent(p.name+' riscatto: '+r.name);save();render();toast('Premio Riscattato!')});
   document.querySelector('#saveTeam')?.addEventListener('click',()=>{S.team.goal=Math.max(1,+document.querySelector('#teamGoal').value||1);S.team.prize=document.querySelector('#teamPrize').value.trim()||'Premio famiglia';save();render();toast('Obiettivo aggiornato')});
   document.querySelectorAll('[data-personedit]').forEach(b=>b.onclick=()=>personForm(b.dataset.personedit));
-  document.querySelector('#export')?.addEventListener('click',()=>{let blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='casa-club-backup.json';a.click();URL.revokeObjectURL(a.href)});
+  document.querySelector('#export')?.addEventListener('click',()=>{let blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='oasis-home-backup.json';a.click();URL.revokeObjectURL(a.href)});
   document.querySelector('#import')?.addEventListener('change',async e=>{try{let obj=JSON.parse(await e.target.files[0].text());if(!obj.people||!obj.tasks)throw Error();if(confirm('Sostituire i dati attuali con il backup?')){S=obj;save();render();toast('Backup importato')}}catch(err){toast('File di backup non valido')}});
   document.querySelector('#reset')?.addEventListener('click',()=>{if(confirm('Cancellare i dati locali?')){S=defaults();save();render()}});
 }
