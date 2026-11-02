@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Faccende di casa</title>
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--tx:#1d1d1b;--mu:#6b6a64;--ac:#2f7d5b;--ac2:#e8f3ee;--bd:#e3e1da;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171716;--card:#232321;--tx:#f0eee8;--mu:#a09e96;--ac:#5fbf92;--ac2:#1f3329;--bd:#35342f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171716;--card:#232321;--tx:#f0eee8;--mu:#a09e96;--ac:#5fbf92;--ac2:#1f3329;--bd:#35342f;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:560px;margin:0 auto;padding:14px 14px 50px}
+h1{font-size:20px;margin:4px 0 12px}h2{font-size:14px;color:var(--mu);margin:16px 2px 6px;text-transform:uppercase;letter-spacing:.04em}
+nav,.who{display:flex;gap:6px;margin-bottom:12px}
+nav button,.who button{flex:1;padding:9px 4px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;font:inherit;font-size:14px}
+nav button.on,.who button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;margin-bottom:8px}
+.row{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.task{width:100%;text-align:left;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:12px;padding:12px;margin-bottom:6px;font:inherit;display:flex;justify-content:space-between;align-items:center}
+.task:active{background:var(--ac2)}
+.pt{background:var(--ac2);color:var(--ac);border-radius:99px;padding:2px 10px;font-weight:600;font-size:14px;white-space:nowrap}
+.mu{color:var(--mu);font-size:13px}.big{font-size:30px;font-weight:700}
+input{padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx);font:inherit;min-width:0}
+.add{display:flex;gap:6px;margin-top:10px}.add input:first-child{flex:1}.add input.n{width:76px}
+.btn{padding:10px 14px;border:0;border-radius:10px;background:var(--ac);color:#fff;font:inherit;font-weight:600}
+.btn.o{background:transparent;color:var(--ac);border:1px solid var(--ac)}.btn:disabled{opacity:.4}
+.x{border:0;background:none;color:var(--mu);font-size:18px;padding:4px 8px}
+.bar{height:8px;border-radius:9px;background:var(--ac);margin-top:6px}
+.tog{display:flex;gap:6px;margin-bottom:10px}.tog button{flex:1}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:99px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}
+#toast.on{opacity:1}
+</style>
+</head>
+<body>
+<main><h1>🏠 Faccende di casa</h1><div id="app"></div></main>
+<div id="toast"></div>
+<script>
+const KEY="faccende_v1";
+const D=[["Cucina",[["Cucinare pranzo o cena",10],["Apparecchiare e sparecchiare",3],["Lavare i piatti",5],["Caricare la lavastoviglie",4],["Svuotare la lavastoviglie",4],["Pulire piano cottura e cucina",8],["Pulire il frigorifero",12],["Pulire il forno",15]]],
+["Bucato",[["Lavatrice (avviare e stendere)",6],["Ritirare e piegare i panni",5],["Stirare",10],["Cambiare le lenzuola",8]]],
+["Pulizie",[["Passare l’aspirapolvere",10],["Lavare i pavimenti",15],["Pulire il bagno",15],["Spolverare",8],["Pulire i vetri",12],["Fare i letti",2],["Riordinare",5],["Pulire il balcone",10]]],
+["Altro",[["Fare la spesa",10],["Portare fuori la spazzatura",3],["Svuotare i cestini",2],["Annaffiare le piante",2]]]];
+const DR=[["Scelgo io il film della serata",30],["Colazione a letto",40],["Massaggio di 20 minuti",50],["Giornata senza faccende",100],["Cena fuori scelta da me",150],["Regalo a sorpresa",300]];
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+let S=null,tab="fai",per="week";
+function load(){try{const r=localStorage.getItem(KEY);if(r)return JSON.parse(r)}catch(e){}
+  return {players:[{id:"a",name:"Io"},{id:"b",name:"Partner"}],cur:"a",
+    tasks:D.flatMap(([g,l])=>l.map(([n,p])=>({id:uid(),g,name:n,points:p}))),logs:[],
+    rewards:DR.map(([n,c])=>({id:uid(),name:n,cost:c})),redeems:[]}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),1600)}
+const nm=id=>(S.players.find(p=>p.id===id)||{name:"?"}).name;
+function weekStart(){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-((d.getDay()+6)%7));return d.getTime()}
+function totals(){const ws=weekStart(),t={};S.players.forEach(p=>t[p.id]={earned:0,week:0,spent:0});
+  S.logs.forEach(l=>{if(!t[l.by])return;t[l.by].earned+=l.points;if(l.ts>=ws)t[l.by].week+=l.points});
+  S.redeems.forEach(r=>{if(t[r.by])t[r.by].spent+=r.cost});return t}
+function render(){
+  const T=totals(),m=T[S.cur],bal=m.earned-m.spent;
+  let h="<div class='who'>"+S.players.map(p=>`<button data-w="${p.id}" class="${S.cur===p.id?"on":""}">${esc(p.name)}</button>`).join("")+"</div>";
+  h+="<nav>"+[["fai","✅ Fai"],["class","🏆 Classifica"],["premi","🎁 Premi"],["storia","🕘 Storico"]].map(([k,l])=>`<button data-t="${k}" class="${tab===k?"on":""}">${l}</button>`).join("")+"</nav>";
+  if(tab==="fai"){
+    h+=`<div class="card row"><div><div class="mu">Punti disponibili di ${esc(nm(S.cur))}</div><div class="big">${bal}</div></div><div class="mu">Settimana: ${m.week}</div></div>`;
+    let g="";
+    S.tasks.forEach(t=>{const gg=t.g||"Altro";if(gg!==g){g=gg;h+=`<h2>${esc(g)}</h2>`}
+      h+=`<button class="task" data-do="${t.id}"><span>${esc(t.name)}</span><span class="pt">+${t.points}</span></button>`});
+    h+=`<div class="card" style="margin-top:12px"><b>Nuova attività</b><div class="add"><input id="tn" placeholder="Es. Lavare l’auto"><input id="tp" class="n" type="number" min="1" value="5"><button class="btn" id="ta">＋</button></div>
+    <div class="mu" style="margin-top:8px">Elimina: ${S.tasks.map(t=>`<button class="x" data-dt="${t.id}">${esc(t.name)} ✕</button>`).join("")}</div></div>`;
+  }
+  if(tab==="class"){
+    h+=`<div class="tog"><button class="btn ${per==="week"?"":"o"}" data-p="week">Settimana</button><button class="btn ${per==="all"?"":"o"}" data-p="all">Sempre</button></div>`;
+    const k=per==="week"?"week":"earned",rows=S.players.map(p=>p.id).sort((x,y)=>T[y][k]-T[x][k]),mx=Math.max(1,...rows.map(i=>T[i][k]));
+    rows.forEach((i,n)=>{h+=`<div class="card"><div class="row"><b>${n===0&&T[i][k]>0&&T[i][k]!==T[rows[1]][k]?"👑 ":""}${esc(nm(i))}</b><span class="pt">${T[i][k]} pt</span></div><div class="bar" style="width:${Math.round(T[i][k]/mx*100)}%"></div><div class="mu" style="margin-top:6px">Disponibili: ${T[i].earned-T[i].spent}</div></div>`});
+    h+=`<div class="card"><b>Nomi</b><div class="add">${S.players.map(p=>`<input data-pn="${p.id}" value="${esc(p.name)}" maxlength="20" style="flex:1">`).join("")}</div></div>`;
+  }
+  if(tab==="premi"){
+    h+=`<div class="card row"><div class="mu">Disponibili: ${esc(nm(S.cur))}</div><div class="big">${bal}</div></div>`;
+    S.rewards.slice().sort((a,b)=>a.cost-b.cost).forEach(r=>{h+=`<div class="card row"><div>${esc(r.name)}<div><span class="pt">${r.cost} pt</span></div></div><div><button class="btn" data-rd="${r.id}" ${bal<r.cost?"disabled":""}>Riscatta</button><button class="x" data-dr="${r.id}">✕</button></div></div>`});
+    h+=`<div class="card"><b>Nuovo premio</b><div class="add"><input id="rn" placeholder="Es. Serata libera"><input id="rp" class="n" type="number" min="1" value="100"><button class="btn" id="ra">＋</button></div></div>`;
+    const rr=S.redeems.slice().sort((a,b)=>b.ts-a.ts).slice(0,8);
+    if(rr.length)h+="<h2>Riscattati</h2>"+rr.map(r=>`<div class="card row"><span>${esc(nm(r.by))}: ${esc(r.name)}</span><span class="mu">−${r.cost}</span></div>`).join("");
+  }
+  if(tab==="storia"){
+    const ls=S.logs.slice().sort((a,b)=>b.ts-a.ts).slice(0,50);
+    if(!ls.length)h+="<div class='mu'>Ancora niente.</div>";
+    ls.forEach(l=>{const d=new Date(l.ts);h+=`<div class="card row"><div>${esc(l.name)}<div class="mu">${esc(nm(l.by))} · ${d.toLocaleDateString("it-IT",{weekday:"short",day:"numeric",month:"short"})} ${d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"})}</div></div><div><span class="pt">+${l.points}</span><button class="x" data-dl="${l.id}">✕</button></div></div>`});
+  }
+  $("#app").innerHTML=h;
+  const on=(s,f)=>document.querySelectorAll(s).forEach(f),B=(s,f)=>{const e=$(s);if(e)e.onclick=f};
+  on("[data-w]",b=>b.onclick=()=>{S.cur=b.dataset.w;save();render()});
+  on("[data-t]",b=>b.onclick=()=>{tab=b.dataset.t;render()});
+  on("[data-p]",b=>b.onclick=()=>{per=b.dataset.p;render()});
+  on("[data-do]",b=>b.onclick=()=>{const t=S.tasks.find(x=>x.id===b.dataset.do);S.logs.push({id:uid(),taskId:t.id,name:t.name,points:t.points,by:S.cur,ts:Date.now()});save();render();toast("+"+t.points+" punti per "+nm(S.cur))});
+  on("[data-dt]",b=>b.onclick=()=>{if(confirm("Eliminare l’attività?")){S.tasks=S.tasks.filter(x=>x.id!==b.dataset.dt);save();render()}});
+  on("[data-dr]",b=>b.onclick=()=>{if(confirm("Eliminare il premio?")){S.rewards=S.rewards.filter(x=>x.id!==b.dataset.dr);save();render()}});
+  on("[data-dl]",b=>b.onclick=()=>{if(confirm("Annullare questa voce?")){S.logs=S.logs.filter(x=>x.id!==b.dataset.dl);save();render()}});
+  on("[data-rd]",b=>b.onclick=()=>{const r=S.rewards.find(x=>x.id===b.dataset.rd);if(confirm("Riscattare “"+r.name+"” per "+r.cost+" punti?")){S.redeems.push({id:uid(),name:r.name,cost:r.cost,by:S.cur,ts:Date.now()});save();render();toast("Premio riscattato 🎉")}});
+  on("[data-pn]",i=>i.onchange=()=>{const v=i.value.trim();if(v){S.players.find(p=>p.id===i.dataset.pn).name=v;save();render()}});
+  B("#ta",()=>{const n=$("#tn").value.trim(),p=parseInt($("#tp").value);if(n&&p>0){S.tasks.push({id:uid(),g:"Altro",name:n,points:p});save();render()}});
+  B("#ra",()=>{const n=$("#rn").value.trim(),p=parseInt($("#rp").value);if(n&&p>0){S.rewards.push({id:uid(),name:n,cost:p});save();render()}});
+}
+S=load();save();render();
+</script>
+</body>
+</html>
