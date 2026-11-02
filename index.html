@@ -364,13 +364,183 @@ const uid=()=>Math.random().toString(36).slice(2,8)+Date.now().toString(36);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const monday=t=>{let d=new Date(t);d.setHours(0,0,0,0);d.setDate(d.getDate()-(d.getDay()+6)%7);return +d};
 const fmt=t=>new Date(t).toLocaleDateString('it-IT',{day:'numeric',month:'short',year:'numeric'});
+
+/* Elenco completo faccende Adulti aggiornato dalle immagini */
 const ADULT=[
-['Cucina',[['Cucinare pranzo o cena',15],['Apparecchiare e sparecchiare',4],['Lavare i piatti',6],['Caricare o svuotare la lavastoviglie',4],['Pulire il piano cottura',8],['Pulire il frigorifero',15],['Pulire il forno',20]]],
-['Bucato',[['Fare lavatrice e stendere',7],['Ritirare e piegare i panni',7],['Stirare',12],['Cambiare le lenzuola',10]]],
-['Pulizie',[['Passare l’aspirapolvere',10],['Lavare i pavimenti',15],['Pulire il bagno',18],['Spolverare',8],['Pulire i vetri',15],['Fare i letti',3],['Riordinare gli ambienti',5],['Pulire il balcone',12]]],
-['Altro',[['Fare la spesa',12],['Portare fuori la spazzatura',3],['Svuotare i cestini',2],['Annaffiare le piante',2]]]
+['1. Cucina',[
+  ['Caricare lavastoviglie',5],
+  ['Scaricare lavastoviglie',6],
+  ['Lavare piatti a mano',5],
+  ['Pulire lavello',3],
+  ['Pulire piano cottura',4],
+  ['Pulire tavolo e superfici',3],
+  ['Pulire microonde',3],
+  ['Pulire frigorifero',6],
+  ['Spazzare e lavare pavimento',6],
+  ['Riordinare tutta la cucina',6]
+]],
+['2. Bucato',[
+  ['Separare e preparare bucato',2],
+  ['Caricare lavatrice',3],
+  ['Stendere bucato',5],
+  ['Ritirare bucato',4],
+  ['Piegare vestiti',5],
+  ['Riporre vestiti',4],
+  ['Stirare un carico',7],
+  ['Cambiare lenzuola',6],
+  ['Rifare il letto',3],
+  ['Riordinare armadio',8]
+]],
+['3. Bagno',[
+  ['Pulire lavandino',3],
+  ['Pulire specchio',2],
+  ['Pulire WC',5],
+  ['Pulire doccia',6],
+  ['Pulire vasca',6],
+  ['Pulire rubinetteria',3],
+  ['Cambiare asciugamani',2],
+  ['Svuotare cestino',2],
+  ['Lavare pavimento',4],
+  ['Pulizia completa bagno',8]
+]],
+['4. Soggiorno e camere',[
+  ['Riordinare soggiorno',4],
+  ['Sistemare divano e cuscini',2],
+  ['Spolverare mobili',4],
+  ['Spolverare mensole',3],
+  ['Passare aspirapolvere',6],
+  ['Lavare pavimenti',7],
+  ['Pulire vetri e specchi',5],
+  ['Riordinare camera',4],
+  ['Rifare letti',3],
+  ['Pulire tappeti',5]
+]],
+['5. Rifiuti e riciclo',[
+  ['Svuotare cestino cucina',2],
+  ['Svuotare cestini bagno e camere',2],
+  ['Separare rifiuti',2],
+  ['Portare fuori spazzatura',3],
+  ['Portare fuori vetro',3],
+  ['Portare fuori plastica e carta',3],
+  ['Cambiare sacchetti',1],
+  ['Pulire bidoni',4],
+  ['Riordinare zona raccolta',3],
+  ['Portare materiali al centro raccolta',6]
+]],
+['6. Spesa e pasti',[
+  ['Preparare lista spesa',2],
+  ['Fare la spesa',8],
+  ['Sistemare la spesa',4],
+  ['Riordinare frigorifero',6],
+  ['Riordinare dispensa',6],
+  ['Preparare colazione',3],
+  ['Preparare pranzo',6],
+  ['Preparare cena',8],
+  ['Preparare pasto completo',12],
+  ['Riordinare cucina dopo il pasto',4]
+]],
+['7. Animali, piante ed esterni',[
+  ['Annaffiare piante',2],
+  ['Potare piante',4],
+  ['Pulire vasi e foglie',3],
+  ['Spazzare balcone',4],
+  ['Lavare balcone',6],
+  ['Dare da mangiare agli animali',2],
+  ['Cambiare acqua agli animali',1],
+  ['Pulire ciotole',2],
+  ['Pulire lettiera',4],
+  ['Portare fuori il cane',4]
+]],
+['8. Organizzazione e manutenzione',[
+  ['Riordinare ripostiglio',7],
+  ['Riordinare garage',8],
+  ['Riordinare cantina',8],
+  ['Organizzare armadi',8],
+  ['Pulire porte e maniglie',4],
+  ['Pulire termosifoni',5],
+  ['Pulire finestre',8],
+  ['Pulire sotto i mobili',6],
+  ['Piccola riparazione domestica',5],
+  ['Organizzare una zona della casa',6]
+]]
 ];
-const CHILD=[['Camera e ordine',[['Riordinare i giochi',5],['Sistemare il letto',3],['Mettere a posto scarpe e giacca',3],['Preparare lo zaino',5],['Piegare i propri vestiti',5]]],['Aiuto in famiglia',[['Apparecchiare la tavola',4],['Aiutare a sparecchiare',4],['Aiutare in cucina con un adulto',5],['Dare da mangiare all’animale (se previsto)',3]]]];
+
+/* Elenco completo faccende Figli aggiornato dalle immagini */
+const CHILD=[
+['1. Camera personale',[
+  ['Riordinare giochi',2],
+  ['Mettere libri a posto',2],
+  ['Mettere vestiti sporchi nel cesto',2],
+  ['Sistemare scarpe',2],
+  ['Appendere giacca e zaino',2],
+  ['Riordinare scrivania',3],
+  ['Preparare zaino',3],
+  ['Preparare vestiti per domani',2],
+  ['Rifare letto',3],
+  ['Riordinare tutta la camera',5]
+]],
+['2. Aiuto in cucina',[
+  ['Apparecchiare',3],
+  ['Sparecchiare',3],
+  ['Portare piatti al lavello',2],
+  ['Sistemare sedie',1],
+  ['Pulire il proprio posto',2],
+  ['Pulire tavolo con panno',2],
+  ['Lavare frutta e verdura',2],
+  ['Preparare merenda semplice',3],
+  ['Mettere via posate pulite',2],
+  ['Aiutare a sistemare la spesa',3]
+]],
+['3. Riordino della casa',[
+  ['Raccogliere oggetti in giro',2],
+  ['Sistemare cuscini e divano',2],
+  ['Piegare coperte',2],
+  ['Riordinare scarpe',2],
+  ['Spolverare superfici basse',2],
+  ['Spazzare una piccola zona',3],
+  ['Riordinare libri',2],
+  ['Piegare asciugamani',2],
+  ['Abbinare calzini',2],
+  ['Riordinare una zona comune',3]
+]],
+['4. Bucato',[
+  ['Portare vestiti al cesto',2],
+  ['Separare calzini',2],
+  ['Abbinare calzini puliti',2],
+  ['Piegare piccoli capi',2],
+  ['Piegare asciugamani',2],
+  ['Riporre vestiti',3],
+  ['Mettere via pigiama',2],
+  ['Preparare cambio sportivo',2],
+  ['Raccogliere piccoli capi stesi',2],
+  ['Aiutare a stendere piccoli capi',3]
+]],
+['5. Animali e piante',[
+  ['Riempire ciotola acqua',2],
+  ['Preparare cibo già dosato',2],
+  ['Spazzolare animale tranquillo',3],
+  ['Riordinare giochi dell’animale',2],
+  ['Annaffiare piante',2],
+  ['Raccogliere foglie',2],
+  ['Pulire un vaso',2],
+  ['Riordinare accessori animali',2],
+  ['Aiutare nella cura dell’animale',3],
+  ['Preparare gli accessori per la passeggiata',2]
+]],
+['6. Autonomia personale',[
+  ['Preparare zaino senza aiuto',3],
+  ['Preparare vestiti per domani',2],
+  ['Riordinare scrivania',3],
+  ['Completare routine mattutina',3],
+  ['Completare routine serale',3],
+  ['Preparare borsa sportiva',3],
+  ['Gestire lista di cose da fare',3],
+  ['Preparare materiale scolastico',2],
+  ['Tenere in ordine la camera',3],
+  ['Completare missione senza promemoria',1]
+]]
+];
+
 const ADULT_REWARDS=[['Scegliere il film della serata',30],['Colazione a letto',50],['Massaggio di 20 minuti',60],['Una giornata senza faccende',120],['Cena fuori scelta da me',180],['Regalo a sorpresa',350]];
 const CHILD_REWARDS=[['30 minuti di gioco extra',30],['Scegliere il film',40],['Paghetta da 5 €',50],['Uscita speciale',100],['Esperienza speciale',300],['Nuovo videogame',400]];
 
